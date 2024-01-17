@@ -1,37 +1,4 @@
-const Header = props => {
-  return (
-    <>
-      <h1>{props.course}</h1>
-    </>
-  )
-}
-
-const Part = props => {
-  return (
-    <>
-      <p>{props.parts}</p>
-    </>
-  )
-}
-
-const Content = props => {
-  return (
-    <>
-      <Part parts={`${props.parts[0].name} ${props.parts[0].exercises}`} />
-      <Part parts={`${props.parts[1].name} ${props.parts[1].exercises}`} />
-      <Part parts={`${props.parts[2].name} ${props.parts[2].exercises}`} />
-    </>
-  )
-}
-
-const Course = props => {
-  return (
-    <>
-      <Header course={props.course.name} />
-      <Content parts={props.course.parts} />
-    </>
-  )
-}
+import Course from "./components/Course";
 
 const App = () => {
   const course = {
