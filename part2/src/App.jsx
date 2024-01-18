@@ -1,5 +1,6 @@
 import Course from "./components/Course";
 
+
 const App = () => {
   const course = {
     id: 1,
@@ -23,10 +24,13 @@ const App = () => {
     ]
   }
 
+  const totalExercises = course.parts.reduce((acc, curr) => acc + curr.exercises, 0);
+
+
   return (
     <>
       <Course course={course} />
-      <p className="font-bold">total of {course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises} exercises</p>
+      <p>Total exercises: {totalExercises}</p>
     </>
   )
 }
