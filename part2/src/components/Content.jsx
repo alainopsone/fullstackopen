@@ -1,10 +1,13 @@
 import Part from "./Part"
 
-const Content = ({ parts }) => {
+const Content = props => {
+  const total = props.parts.reduce((acc, curr) => acc + curr.exercises, 0)
+
   return (
-    <>
-      {parts.map(part => <Part key={part.id} parts={`${part.name} ${part.exercises}`} />)}
-    </>
+    <div>
+      {props.parts.map(part => <Part key={part.id} name={part.name} exercises={part.exercises} />)}
+      <p className="mt-4 font-bold">Total exercises: {total}</p>
+    </div>
   )
 }
 

@@ -4,8 +4,12 @@ import Content from "./Content"
 const Course = props => {
   return (
     <>
-      <Header course={props.course.name} />
-      <Content parts={props.course.parts} exercises={props.course.parts.exercises} />
+      {props.courses.map(course => (
+        <div key={course.id} className="mb-8">
+          <Header courses={course.name} />
+          <Content parts={course.parts} />
+        </div>
+      ))}
     </>
   )
 }
