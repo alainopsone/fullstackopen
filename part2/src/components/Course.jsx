@@ -6,7 +6,7 @@ const Course = props => {
     <>
       {props.courses.map(course => (
         <div key={course.id} className="mb-8">
-          <Header courses={course.name} />
+          <Header courseName={course.name} />
           <Content parts={course.parts} />
         </div>
       ))}
