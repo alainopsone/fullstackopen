@@ -1,54 +1,50 @@
 import { useState } from 'react'
-import Note from './components/Note'
 
-const App = (props) => {
-  const [notes, setNotes] = useState(props.notes)
-  const [newNote, setNewNotes] = useState('new note...')
-  const [showAll, setShowAll] = useState(true)
+const Person = (props) => <li>{props.name}</li>
 
-  const addNote = (event)=> {
+const App = () => {
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas' },
+    { name: 'Al Hes' }
+  ])
+  const [newName, setNewName] = useState('')
+
+  const addPerson = (event) => {
     event.preventDefault()
 
-    const noteObject = {
-      content: newNote,
-      important: Math.random() < 0.5,
-      id: notes.length + 1,
+    const personObject = {
+      name: newName,
     }
 
-    setNotes(notes.concat(noteObject))
-    setNewNotes('')
+    setPersons(persons.concat(personObject))
+    setNewName('')
   }
 
-  const handleNoteChange = (event) => {
-    setNewNotes(event.target.value)
+  const handlePersonChange = (event) => {
+    console.log(event.target.value);
+    setNewName(event.target.value)
   }
-
-  const notesToShow = showAll ? notes : notes.filter(note => note.important === true)
 
   return (
     <div>
-      <h1>Notes</h1>
-      <div>
-        <button
-          className='border-[1px] border-solid rounded-sm border-blue-900'
-          onClick={() => setShowAll(!showAll)}>
-            show {showAll ? 'important' : 'all'}
-        </button>
-      </div>
-      <ul>
-        {notesToShow.map(note =>
-          <Note key={note.id} note={note} />
-        )}
-      </ul>
-
-      <form onSubmit={addNote}>
-          <input
-            value={newNote}
-            onChange={handleNoteChange}
-            className='border-[1px] border-solid rounded-sm border-blue-900'
-            type='text' />
-          <button type='submit'>save</button>
+      <h2>Phonebook</h2>
+      <form onSubmit={addPerson}>
+        <div>
+          name: <input className='p-1 border-[1px] rounded-md border-solid border-slate-800' value={newName} onChange={handlePersonChange} />
+          <div>debug: {newName}</div>
+        </div>
+        <div>
+          <button
+            className='p-1 border-[1px] rounded-md border-solid border-slate-800'
+            type="submit">add</button>
+        </div>
       </form>
+      <h2>Numbers</h2>
+      <div>
+        <ul>
+          {persons.map(person => <Person key={person.name} name={person.name} />)}
+        </ul>
+      </div>
     </div>
   )
 }
