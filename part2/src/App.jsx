@@ -14,13 +14,11 @@ const App = () => {
     const personObject = {
       name: newName,
     }
-
     setPersons(persons.concat(personObject))
     setNewName('')
   }
 
   const handlePersonChange = (event) => {
-    console.log(event.target.value);
     setNewName(event.target.value)
   }
 
